@@ -1,0 +1,15 @@
+--- #this playbook with install git,docker and instances
+- hosts: sampleintances
+  become: yes
+  connection: local
+  gatherfacts: no
+  tasks:
+  - name: create ec2 machine
+    ec2:
+    key_name: "linux"
+    instance_type: "t2.micro"
+    image: "ami-ami-0ac019f4fcb7cb7e6"
+    wait: true
+    region: "us-east-1"
+    register: ec2
+  - debug: var=ec2
